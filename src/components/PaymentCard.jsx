@@ -11,8 +11,15 @@ const PaymentCard = ({ handlePaymentStatus }) => {
   const [viewOTP, setOTPView] = useState(false);
   const [otp, setOTP] = useState("");
 
-  const { state } = useContext(CTX);
+  const { state, dispatch } = useContext(CTX);
   const { id } = useParams();
+
+  const setPaymentStatus = status => {
+    if (status === "success") {
+      dispatch({ type: "UPDATE_BOUGHT_RECIPES", payload: id });
+    }
+    handlePaymentStatus(status);
+  };
 
   return (
     <PaymentCardWrapper>
@@ -80,8 +87,8 @@ const PaymentCard = ({ handlePaymentStatus }) => {
         <Button
           onClick={() => {
             otp === "123456"
-              ? handlePaymentStatus("success")
-              : handlePaymentStatus("failure");
+              ? setPaymentStatus("success")
+              : setPaymentStatus("failure");
           }}
         >
           Pay &nbsp; ${state.recipesList[id].price}

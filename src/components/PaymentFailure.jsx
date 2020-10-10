@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import FailureIcon from "../assets/failure.svg";
+import { useHistory } from "react-router-dom";
 
 const PaymentFailure = () => {
+  const history = useHistory();
+
+  useEffect(() => {
+    setTimeout(() => {
+      history.push("/");
+    }, 2000);
+  }, []);
+
   return (
     <FailureWrapper>
       <Icon src={FailureIcon} alt="failure"></Icon>
       <div className="h-2x"></div>
       <StatusLabel>Payment Failed</StatusLabel>
+      <div className="h-3x"></div>
+      <label style={{ fontSize: 12 }}>Redirecting to Home...</label>
     </FailureWrapper>
   );
 };

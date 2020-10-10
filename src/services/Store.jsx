@@ -2,7 +2,8 @@ import React, { createContext, useReducer } from "react";
 
 const initialState = {
   isLoading: false,
-  recipesList: []
+  recipesList: [],
+  boughtRecipes: []
 };
 
 export const CTX = createContext();
@@ -18,6 +19,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         recipesList: action.payload
+      };
+    case "UPDATE_BOUGHT_RECIPES":
+      return {
+        ...state,
+        boughtRecipes: [...state.boughtRecipes, action.payload]
       };
     default:
       return state;

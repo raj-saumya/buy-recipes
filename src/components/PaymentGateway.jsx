@@ -29,6 +29,7 @@ const PaymentGatewayWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background: #e8ecfa;
+  font-family: 'Noto Sans JP', sans-serif;
 `;
 
 export default PaymentGateway;

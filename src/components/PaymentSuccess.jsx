@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import SuccessIcon from "../assets/tick.svg";
+import { useHistory } from "react-router-dom";
 
 const PaymentSuccess = () => {
+  const history = useHistory();
+
+  useEffect(() => {
+    setTimeout(() => {
+      history.push("/");
+    }, 2000);
+  }, []);
+
   return (
     <SuccessWrapper>
       <Icon src={SuccessIcon} alt="success"></Icon>
       <div className="h-2x"></div>
       <StatusLabel>Payment Success</StatusLabel>
+      <div className="h-3x"></div>
+      <label style={{ fontSize: 12 }}>Redirecting to Home...</label>
     </SuccessWrapper>
   );
 };

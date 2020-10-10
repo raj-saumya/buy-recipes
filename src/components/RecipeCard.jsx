@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { CTX } from "../services/Store";
 
 const RecipeCard = ({
   category,
@@ -12,6 +13,7 @@ const RecipeCard = ({
   price
 }) => {
   const history = useHistory();
+  const { state } = useContext(CTX);
   return (
     <CardWrapper onClick={() => history.push(`/recipe/${id}`)}>
       <RecipeImg src={image} alt="recipe-img" />
@@ -24,7 +26,13 @@ const RecipeCard = ({
         <div className="h-x"></div>
         <label>{label}</label>
         <div className="h-x"></div>
-        <RecipePrice>{price}</RecipePrice>
+        <div style={{ textAlign: "end" }}>
+          {state.boughtRecipes.includes(id) ? (
+            <RecipeNoPrice>Already Bought.</RecipeNoPrice>
+          ) : (
+            <RecipePrice>$ {price}</RecipePrice>
+          )}
+        </div>
       </RecipeDetailWrapper>
     </CardWrapper>
   );
@@ -36,12 +44,12 @@ const CardWrapper = styled.div`
   background: #fff;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0px 0px 16px -2px #c1c1c1;
+  box-shadow: 0px 0px 16px -2px #eeeeee;
   cursor: pointer;
 `;
 
 const RecipeImg = styled.img`
-  height: 200px;
+  height: 160px;
   width: auto;
   object-fit: cover;
 `;
@@ -52,10 +60,12 @@ const RecipeDetailWrapper = styled.div`
 
 const RecipeName = styled.label`
   font-size: 18px;
+  font-weight: bold;
 `;
 
 const RecipeCategory = styled.label`
   font-size: 14px;
+  color: #8a8a8a;
 `;
 
 const RecipeDescription = styled.label`
@@ -65,6 +75,11 @@ const RecipeDescription = styled.label`
 const RecipePrice = styled.label`
   font-size: 16px;
   color: red;
+  font-weight: bold;
+`;
+
+const RecipeNoPrice = styled(RecipePrice)`
+  color: green;
 `;
 
 export default RecipeCard;

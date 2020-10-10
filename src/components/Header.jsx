@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <HeaderTextWrapper>
-        <HeaderText>Get on</HeaderText>
+        <HeaderText>Discover</HeaderText>
         <div className="h-x"></div>
         <HeaderText>Your</HeaderText>
         <div className="h-x"></div>
@@ -20,7 +20,7 @@ const Header = () => {
 const HeaderWrapper = styled.div`
   display: flex;
   padding: 40px;
-  background-color: #D84315;
+  background-color: #d84315;
   height: 300px;
   overflow: hidden;
   border-radius: 16px;
